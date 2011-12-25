@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 /**
  * @author 7droids.de (FA)
- *
+ * 
  */
 @Singleton
 public interface IdGenerator {

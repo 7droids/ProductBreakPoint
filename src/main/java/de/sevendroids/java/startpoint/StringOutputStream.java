@@ -5,7 +5,7 @@ import java.io.OutputStream;
 
 /**
  * @author 7droids.de (FA)
- *
+ * 
  */
 public class StringOutputStream extends OutputStream {
 	private StringBuilder data = new StringBuilder(128);

@@ -10,8 +10,8 @@ import javax.enterprise.inject.Default;
 
 /**
  * @author 7driods (FA)<br>
- * Default implementation for Id generation.
- *
+ *         Default implementation for Id generation.
+ * 
  */
 @Default
 public class DefaultIdGenerator implements IdGenerator {

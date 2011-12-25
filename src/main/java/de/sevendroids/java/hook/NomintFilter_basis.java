@@ -15,26 +15,27 @@ import java.util.TimeZone;
 
 /**
  * @author 7droids.de (FA)<br>
- * In this class the whole business logic is done. The class itself
- * is abstract to permit direct instantiation.
+ *         In this class the whole business logic is done. The class itself is
+ *         abstract to permit direct instantiation.
  */
 public abstract class NomintFilter_basis {
-	private NumberFormat nfParse = NumberFormat.getInstance();
-	private SimpleDateFormat sdfYMDHM = new SimpleDateFormat("yyyyMMddHHmm");
+	private final NumberFormat nfParse = NumberFormat.getInstance();
+	private final SimpleDateFormat sdfYMDHM = new SimpleDateFormat(
+			"yyyyMMddHHmm");
 
 	public NomintFilter_basis() {
 		sdfYMDHM.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
 
 	public void filter(InputStream is, OutputStream os) throws IOException {
-		// BufferedReader und -Writer anlegen
+		// Create BufferedReader and -Writer
 		BufferedReader in = new BufferedReader(new InputStreamReader(is,
 				"UTF-8"));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(os,
 				"UTF-8"));
 
 		try {
-			// Filter starten
+			// start filter
 			Date now = new Date();
 			SimpleDateFormat sdfYMD = new SimpleDateFormat("yyMMdd");
 			SimpleDateFormat sdfHM = new SimpleDateFormat("HHmm");
@@ -47,7 +48,7 @@ public abstract class NomintFilter_basis {
 			nfEdi.setMinimumFractionDigits(0);
 			nfEdi.setMaximumFractionDigits(0);
 
-			// Header-Informationen
+			// Header information
 			out.write("UNA:+.? '");
 
 			out.write("UNB+UNOA:3+Absender:501" + "+Receiver:502" + "+"
@@ -61,17 +62,17 @@ public abstract class NomintFilter_basis {
 			out.write("NAD+ZSY+Absender::321'");
 			out.write("NAD+ZSO+Receiver::502'");
 
-			int segmentCnt = 8; // UNA und UNB zählen hier nicht dazu
+			int segmentCnt = 8; // UNA and UNB don't count
 
-			// Schleife über die LIN-Daten wird zur Vereinfachung weggelassen
+			// Loop through LIN data omitted for simplicity
 			out.write("UNS+S'");
 			segmentCnt++;
-			// Das UNT zählt mit
+			// Count UNT segment
 			out.write("UNT+" + (segmentCnt + 1) + "+1'");
 			out.write("UNZ+1+" + uniqueId + "'");
 
 		} finally {
-			// Reader und Writer wieder zumachen
+			// Close reader and writer
 			in.close();
 			out.close();
 		}
