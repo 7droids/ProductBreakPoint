@@ -80,9 +80,4 @@ public class NomintFilter {
 			out.close();
 		}
 	}
-
-	protected String createUniqueId(Date now) {
-		SimpleDateFormat sdfUnique = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		return sdfUnique.format(now).substring(3);
-	}
 }

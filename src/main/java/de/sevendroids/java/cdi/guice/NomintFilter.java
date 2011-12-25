@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import javax.inject.Inject;
+import com.google.inject.Inject;
 
 /**
  * @author 7droids.de (FA)
@@ -80,10 +80,5 @@ public class NomintFilter {
 			in.close();
 			out.close();
 		}
-	}
-
-	protected String createUniqueId(Date now) {
-		SimpleDateFormat sdfUnique = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		return sdfUnique.format(now).substring(3);
 	}
 }
