@@ -1,2 +1,8 @@
-bin
-/target
+# classes directory
+*classes*
+*target*
+*.settings
+*surefire*
+
+# class files
+*.class
