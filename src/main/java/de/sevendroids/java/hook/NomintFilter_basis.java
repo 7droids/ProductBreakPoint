@@ -19,13 +19,6 @@ import java.util.TimeZone;
  *         abstract to permit direct instantiation.
  */
 public abstract class NomintFilter_basis {
-	private final NumberFormat nfParse = NumberFormat.getInstance();
-	private final SimpleDateFormat sdfYMDHM = new SimpleDateFormat(
-			"yyyyMMddHHmm");
-
-	public NomintFilter_basis() {
-		sdfYMDHM.setTimeZone(TimeZone.getTimeZone("UTC"));
-	}
 
 	public void filter(InputStream is, OutputStream os) throws IOException {
 		// Create BufferedReader and -Writer
@@ -37,6 +30,9 @@ public abstract class NomintFilter_basis {
 		try {
 			// start filter
 			Date now = new Date();
+			NumberFormat nfParse = NumberFormat.getInstance();
+			SimpleDateFormat sdfYMDHM = new SimpleDateFormat("yyyyMMddHHmm");
+			sdfYMDHM.setTimeZone(TimeZone.getTimeZone("UTC"));
 			SimpleDateFormat sdfYMD = new SimpleDateFormat("yyMMdd");
 			SimpleDateFormat sdfHM = new SimpleDateFormat("HHmm");
 			String uniqueId = createUniqueId(now);
